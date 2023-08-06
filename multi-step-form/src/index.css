@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+
+  .form-navigation-buttons {
+    @apply flex items-center justify-center w-9 h-9 rounded-full border-Light-blue border-2 border-solid text-white hover:bg-Light-blue hover:text-Marine-blue;
+  }
+}
+
+html, body, div, span, h1, h2, h3, h4, h5, h6, p, header, section, article, footer, title, figcaption, figure, aside, nav {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  vertical-align: baseline;
+}
