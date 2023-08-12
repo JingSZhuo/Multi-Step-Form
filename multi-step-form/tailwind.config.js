@@ -23,6 +23,12 @@ export default {
       },
       backgroundImage: {
         'bg-sidebar-mobile': "url('./images/bg-sidebar-mobile.svg')",
+        "bg-sidebar-desktop": "url('./images/bg-sidebar-desktop.svg')",
+      },
+      fontFamily: {
+        "ub-regular": "Ubuntu-Regular",
+        "ub-medium": "Ubuntu-Medium",
+        "ub-bold": "Ubuntu-Bold",
       },
     },
   },
