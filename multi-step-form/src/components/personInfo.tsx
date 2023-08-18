@@ -24,7 +24,8 @@ const PersonalInfoComponent: React.FC<PersonalInfoComponentProps> = ({comp}) => 
         setNumber(event.target.value);
     }
 
-    const handleSubmit = () => {
+    const handleSubmit = (event: any) => {
+        event.preventDefault();
         if ((name.trim() === '' ) || (email.trim() === '') || (number.trim() === '')){
             if(name.trim() === ''){
                 setNameErr(true);
@@ -41,38 +42,42 @@ const PersonalInfoComponent: React.FC<PersonalInfoComponentProps> = ({comp}) => 
             console.log('empty')
         } else {
             setNameErr(false); setEmailErr(false); setNumberErr(false);
-            console.log('not empty')
+            console.log('not empty, submitting to database...')
             comp();
         }
     }
 
     return(
-        <div className='flex flex-col'>
-              <h2 className="text-2xl font-bold text-Marine-blue mt-3">Personal info</h2>
-              <span className="mt-3 text-base text-Cool-gray">Please provide your name, email address, and phone number</span>
-              <div className="flex flex-col mt-6">
-                <div className="flex flex-row items-center justify-between">
-                    <label htmlFor="name" className="text-sm">Name</label>
-                    <p className={nameErr? 'err-display' : 'err-hidden'}>This field is required</p>
+        <>
+            <div className='flex flex-col'>
+                <h2 className="text-2xl font-bold text-Marine-blue mt-3">Personal info</h2>
+                <span className="mt-3 text-base text-Cool-gray">Please provide your name, email address, and phone number</span>
+                <div className="flex flex-col mt-6">
+                    <div className="flex flex-row items-center justify-between">
+                        <label htmlFor="name" className="text-sm">Name</label>
+                        <p className={nameErr ? 'err-display' : 'err-hidden'}>This field is required</p>
+                    </div>
+                    <input type="text" id="name" className="border border-l mt-1 px-4 py-2 rounded-md" onChange={handleNameChange} placeholder="e.g Stephen King" />
                 </div>
-                <input type="text" id="name" className="border border-l mt-1 px-4 py-2 rounded-md" onChange={handleNameChange} placeholder="e.g Stephen King"/>
-              </div>
-              <div className="flex flex-col mt-6">
-                <div className="flex flex-row items-center justify-between">
-                    <label htmlFor="email" className="text-sm">Email Address</label>
-                    <p className={emailErr? 'err-display' : 'err-hidden'}>This field is required</p>
+                <div className="flex flex-col mt-6">
+                    <div className="flex flex-row items-center justify-between">
+                        <label htmlFor="email" className="text-sm">Email Address</label>
+                        <p className={emailErr ? 'err-display' : 'err-hidden'}>This field is required</p>
+                    </div>
+                    <input type="email" id="email" className="border border-l mt-1 px-4 py-2 rounded-md" onChange={handleEmailChange} placeholder="e.g stephenking@lorem.com" />
                 </div>
-                <input type="email" id="email" className="border border-l mt-1 px-4 py-2 rounded-md" onChange={handleEmailChange} placeholder="e.g stephenking@lorem.com"/>
-              </div>
-              <div className="flex flex-col mt-6">
-                <div className="flex flex-row items-center justify-between">
-                    <label htmlFor="number" className="text-sm">Phone Number</label>
-                    <p className={numberErr? 'err-display' : 'err-hidden'}>This field is required</p>
+                <div className="flex flex-col mt-6">
+                    <div className="flex flex-row items-center justify-between">
+                        <label htmlFor="number" className="text-sm">Phone Number</label>
+                        <p className={numberErr ? 'err-display' : 'err-hidden'}>This field is required</p>
+                    </div>
+                    <input type="number" id="number" className="border border-l mt-1 px-4 py-2 rounded-md" onChange={handleNumberChange} placeholder="e.g +1 234 567 890" />
                 </div>
-                <input type="number" id="number" className="border border-l mt-1 px-4 py-2 rounded-md" onChange={handleNumberChange} placeholder="e.g +1 234 567 890"/>
-              </div>
-              <div onClick={handleSubmit}>Next</div>
-        </div>
+            </div>
+            <div className="fixed right-0 bottom-0 flex justify-end p-3 w-full bg-White md:relative md:p-0 md:mt-6">
+                <button className=" bg-Marine-blue text-white px-5 py-3 rounded-md" onClick={handleSubmit}>Next Step</button>
+            </div>
+        </>
     )
 }
 
